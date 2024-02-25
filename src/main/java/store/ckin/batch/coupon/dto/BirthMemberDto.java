@@ -1,19 +1,26 @@
-package com.nhnacademy.bookpubbatch.coupon.dto;
+package store.ckin.batch.coupon.dto;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.sql.Date;
 
 /**
- * 생일 멤버를 위한 dto 입니다.
+ * BirthMemberDto
  *
- * @author : 김서현
- * @since : 1.0
- **/
+ * @author : gaeun
+ * @version : 2024. 02. 25
+ */
 @Getter
-@Builder
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BirthMemberDto {
 
-    private Long memberNo;
-    private Integer birthMonth;
+    private Long memberId;
+    private Date memberBirth;
+
 
 }
