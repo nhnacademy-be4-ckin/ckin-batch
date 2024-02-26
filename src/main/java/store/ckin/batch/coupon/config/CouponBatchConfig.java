@@ -1,10 +1,12 @@
 package store.ckin.batch.coupon.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.database.ItemPreparedStatementSetter;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
@@ -48,6 +50,7 @@ public class CouponBatchConfig {
     }
 
     @Bean
+    @JobScope
     public Step giveBirthCouponStep() throws Exception {
         return stepBuilderFactory.get("giveBirthCouponStep")
                 .<BirthMemberDto, BirthMemberDto>chunk(chunkSize)

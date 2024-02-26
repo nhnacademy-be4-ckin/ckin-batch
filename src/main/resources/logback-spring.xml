@@ -14,7 +14,7 @@
 
     <!-- 로깅을 파일로 저장 -->
     <appender name="LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>./${LOGS_ABSOLUTE_PATH}/coupon.log</file>
+        <file>./${LOGS_ABSOLUTE_PATH}/batch.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <charset>utf8</charset>
             <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %thread [%X{traceId}] %-5level %logger - %m%n</Pattern>
