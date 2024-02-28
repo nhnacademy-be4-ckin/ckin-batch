@@ -19,8 +19,8 @@ import java.sql.Date;
 @AllArgsConstructor
 public class BirthMemberDto {
 
-    private Long memberId;
-    private Date memberBirth;
+    private Long member_id;
+    private Date member_birth;
 
 
 }
