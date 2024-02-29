@@ -3,7 +3,7 @@
     <!--    파일을 저장할 위치 지정       -->
     <property name="LOGS_ABSOLUTE_PATH" value="./logs"/>
     <!--    콘솔 로그에 색상 입히기       -->
-    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
 
     <!-- 콘솔 로깅 설정 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -44,7 +44,7 @@
         </root>
         <!--  쿼리문 로그에 출력되어 있는 파라미터에 바인딩 되는 값을 알 수 있음  -->
         <logger name="org.hibernate.type.descriptor.sql" additivity="false">
-            <level value = "TRACE" />
+            <level value="TRACE"/>
             <appender-ref ref="STDOUT"/>
         </logger>
     </springProfile>
