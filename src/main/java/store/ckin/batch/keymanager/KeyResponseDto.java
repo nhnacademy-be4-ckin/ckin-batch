@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * description:
+ * KeyResponseDto
  *
- * @author : gaeun
+ * @author : 이가은
  * @version : 2024. 02. 29
  */
 @Getter

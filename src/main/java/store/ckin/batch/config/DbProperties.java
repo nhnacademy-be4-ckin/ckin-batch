@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * DbProperties
  *
- * @author : gaeun
+ * @author : 이가은
  * @version : 2024. 02. 20
  */
 @Getter

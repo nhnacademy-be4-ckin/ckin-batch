@@ -4,13 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import store.ckin.batch.coupon.mapper.BirthMapper;
 import store.ckin.batch.keymanager.KeyManager;
 
 import javax.sql.DataSource;
@@ -18,13 +14,11 @@ import javax.sql.DataSource;
 /**
  * DataSourceConfig
  *
- * @author : gaeun
+ * @author : 이가은
  * @version : 2024. 02. 20
  */
 @Configuration
 @RequiredArgsConstructor
-//@ComponentScan(value = "store.ckin.batch.keymanager")
-//@MapperScan(value = "store.ckin.batch.coupon.mapper")
 public class DataSourceConfig {
 
     private final ApplicationContext applicationContext;

@@ -10,7 +10,7 @@ import java.sql.Date;
 /**
  * BirthMemberDto
  *
- * @author : gaeun
+ * @author : 이가은
  * @version : 2024. 02. 25
  */
 @Getter

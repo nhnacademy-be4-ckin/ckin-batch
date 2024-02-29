@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * description:
  *
- * @author : gaeun
+ * @author : 이가은
  * @version : 2024. 02. 28
  */
 @Getter

@@ -1,9 +1,9 @@
 package store.ckin.batch.keymanager;
 
 /**
- * description:
+ * KeyMangerException
  *
- * @author : gaeun
+ * @author : 이가은
  * @version : 2024. 02. 29
  */
 public class KeyMangerException extends RuntimeException {
