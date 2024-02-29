@@ -12,8 +12,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "ckin.batch")
+@ConfigurationProperties(prefix = "ckin.mysql")
 public class DbProperties {
+    private String driver;
     private String url;
     private String userName;
     private String password;

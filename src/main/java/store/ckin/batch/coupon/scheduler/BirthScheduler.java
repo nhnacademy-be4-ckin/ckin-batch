@@ -28,7 +28,7 @@ public class BirthScheduler {
     @Autowired
     private CouponBatchConfig couponBatchConfig;
 
-    @Scheduled(cron = "0 0 0 1 * *")
+    @Scheduled(cron = "15 * * * * *")
     public void birthJob() {
         Map<String, JobParameter> confMap = new HashMap<>();
 
