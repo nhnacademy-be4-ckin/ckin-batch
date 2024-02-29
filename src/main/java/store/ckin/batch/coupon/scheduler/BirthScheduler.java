@@ -28,7 +28,7 @@ public class BirthScheduler {
     @Autowired
     private CouponBatchConfig couponBatchConfig;
 
-    @Scheduled(cron = "15 * * * * *")
+    @Scheduled(cron = "0 0 0 1 * *")
     public void birthJob() {
         Map<String, JobParameter> confMap = new HashMap<>();
 
@@ -38,11 +38,8 @@ public class BirthScheduler {
 
         try {
             jobLauncher.run(couponBatchConfig.giveBirthCoupon(), jobParameters);
-            System.out.println("run!!!");
         } catch (Exception e) {
             e.printStackTrace();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            System.out.println(String.format("ERRER TIME : %s", format.format(date) ));
         }
     }
 }
