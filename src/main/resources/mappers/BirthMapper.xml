@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.ckin.batch.coupon.mapper.BirthMapper">
+    <select id="getBirthMember" resultType="store.ckin.batch.coupon.dto.BirthMemberDto">
+        SELECT member_id, member_birth
+        FROM Member
+        WHERE MONTH (member_birth) = DATE_FORMAT(NOW(), '%m');
+    </select>
+
+    <insert id="insertBirthCoupon" parameterType="store.ckin.batch.coupon.dto.BirthCouponDto">
+        INSERT INTO Coupon(member_id, coupontemplate_id, coupon_expiration_date, coupon_issue_date, coupon_used_date)
+        VALUES (#{memberId}, #{couponTemplateId}, #{expirationDate}, #{issueDate}, #{usedDate});
+    </insert>
+</mapper>
