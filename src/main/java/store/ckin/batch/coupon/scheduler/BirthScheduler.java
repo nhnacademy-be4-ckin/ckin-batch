@@ -1,6 +1,5 @@
 package store.ckin.batch.coupon.scheduler;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -9,7 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import store.ckin.batch.coupon.config.CouponBatchConfig;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
