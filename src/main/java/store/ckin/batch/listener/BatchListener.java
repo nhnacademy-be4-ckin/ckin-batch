@@ -8,13 +8,13 @@ import org.springframework.batch.core.annotation.OnReadError;
 import org.springframework.batch.item.ParseException;
 
 /**
- * 생일 쿠폰 실행 시 로그를 기록하는 리스너 입니다.
+ * 로그를 기록하는 리스너 입니다.
  *
  * @author : 이가은
  * @version : 2024. 02. 29
  */
 @Slf4j
-public class BirthCouponListener {
+public class BatchListener {
 
     @BeforeStep
     public void beforeStep(StepExecution execution) {

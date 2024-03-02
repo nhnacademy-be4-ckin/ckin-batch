@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import store.ckin.batch.coupon.dto.BirthCouponDto;
 import store.ckin.batch.coupon.dto.BirthMemberDto;
-import store.ckin.batch.listener.BirthCouponListener;
+import store.ckin.batch.listener.BatchListener;
 
 import java.time.LocalDate;
 
@@ -29,7 +29,7 @@ import java.time.LocalDate;
 public class BirthCouponStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final SqlSessionFactory sqlSessionFactory;
-    private final BirthCouponListener birthCouponListener;
+    private final BatchListener birthCouponListener;
     private static final int chunkSize = 10;
 
     @Bean
