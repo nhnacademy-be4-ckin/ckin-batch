@@ -33,7 +33,6 @@ public class BirthCouponStep {
     private static final int chunkSize = 10;
 
     @Bean
-//    @JobScope
     public Step giveBirthCouponStep() throws Exception {
         return stepBuilderFactory.get("giveBirthCouponStep")
                 .<BirthMemberDto, BirthCouponDto>chunk(chunkSize)

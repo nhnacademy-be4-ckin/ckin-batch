@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import store.ckin.batch.keymanager.KeyManager;
 
 import javax.sql.DataSource;
@@ -26,12 +28,22 @@ public class DataSourceConfig {
     private final KeyManager keyManager;
 
 
-    @Bean
+    @Bean(name = "dataSource")
     public DataSource dataSource() {
+        return getDataSource(keyManager.keyStore(dbProperties.getUrl()));
+    }
+
+    @Primary
+    @Bean(name = "defaultDataSource")
+    public DataSource defaultDataSource() {
+        return getDataSource("jdbc:mysql://133.186.241.167:3306/ckin_coupon_batch");
+    }
+
+    private DataSource getDataSource(String url) {
         BasicDataSource basicDataSource = new BasicDataSource();
 
         basicDataSource.setDriverClassName(keyManager.keyStore(dbProperties.getDriver()));
-        basicDataSource.setUrl(keyManager.keyStore(dbProperties.getUrl()));
+        basicDataSource.setUrl(url);
         basicDataSource.setUsername(keyManager.keyStore(dbProperties.getUserName()));
         basicDataSource.setPassword(keyManager.keyStore(dbProperties.getPassword()));
 
@@ -48,9 +60,9 @@ public class DataSourceConfig {
     }
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory() throws Exception {
+    public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
+        sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mappers/*.xml"));
 
         return sqlSessionFactoryBean.getObject();
