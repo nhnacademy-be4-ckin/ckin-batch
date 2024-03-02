@@ -30,13 +30,13 @@ public class DataSourceConfig {
 
     @Bean(name = "dataSource")
     public DataSource dataSource() {
-        return getDataSource(keyManager.keyStore(dbProperties.getUrl()));
+        return getDataSource(keyManager.keyStore(dbProperties.getUrl_dev()));
     }
 
     @Primary
     @Bean(name = "defaultDataSource")
     public DataSource defaultDataSource() {
-        return getDataSource("jdbc:mysql://133.186.241.167:3306/ckin_coupon_batch");
+        return getDataSource(keyManager.keyStore(dbProperties.getUrl_batch()));
     }
 
     private DataSource getDataSource(String url) {
