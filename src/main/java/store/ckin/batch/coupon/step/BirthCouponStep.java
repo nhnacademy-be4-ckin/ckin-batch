@@ -35,7 +35,7 @@ public class BirthCouponStep {
     private final PlatformTransactionManager transactionManager;
     private final BatchListener birthCouponListener;
     private final BirthMapper birthMapper;
-    private static final int chunkSize = 3;
+    private static final int CHUNK_SIZE = 3;
 
     /**
      * ItemReader, ItemWriter 실행하고 예외상황에 대한 로그를 남기는 Step 입니다.
@@ -46,7 +46,7 @@ public class BirthCouponStep {
     @Bean
     public Step giveBirthCouponStep() throws Exception {
         return stepBuilderFactory.get("giveBirthCouponStep")
-                .<BirthMemberDto, BirthCouponDto>chunk(chunkSize)
+                .<BirthMemberDto, BirthCouponDto>chunk(CHUNK_SIZE)
                 .reader(myBatisPagingItemReader())
                 .processor(processor())
                 .writer(customItemWriter())
@@ -68,7 +68,7 @@ public class BirthCouponStep {
     @Bean
     public MyBatisPagingItemReader<BirthMemberDto> myBatisPagingItemReader() throws Exception {
         return new MyBatisPagingItemReaderBuilder<BirthMemberDto>()
-                .pageSize(chunkSize)
+                .pageSize(CHUNK_SIZE)
                 .sqlSessionFactory(sqlSessionFactory)
                 .queryId("store.ckin.batch.coupon.mapper.BirthMapper.getBirthMember")
                 .build();
@@ -82,12 +82,12 @@ public class BirthCouponStep {
      */
     @Bean
     public ItemProcessor<BirthMemberDto, BirthCouponDto> processor() {
-
-        return birthMemberDto -> {
-            BirthCouponDto birthCouponDto = new BirthCouponDto(birthMemberDto.getMemberId(), 1L, birthMemberDto.getMemberBirth(), java.sql.Date.valueOf(LocalDate.now().toString()), null);
-
-            return birthCouponDto;
-        };
+        return birthMemberDto
+                -> new BirthCouponDto(birthMemberDto.getMemberId(),
+                1L,
+                birthMemberDto.getMemberBirth(),
+                java.sql.Date.valueOf(LocalDate.now().toString()),
+                null);
     }
 
     /**
@@ -97,9 +97,7 @@ public class BirthCouponStep {
      */
     @Bean
     public ItemWriter<BirthCouponDto> customItemWriter() {
-        return items -> {
-            birthMapper.bulkInsertUserList(items);
-        };
+        return birthMapper::bulkInsertUserList;
     }
 
 }

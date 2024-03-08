@@ -15,8 +15,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "ckin.mysql")
 public class DbProperties {
     private String driver;
-    private String url_dev;
-    private String url_batch;
+    private String urlDev;
+    private String urlBatch;
     private String userName;
     private String password;
     private int initialSize;
