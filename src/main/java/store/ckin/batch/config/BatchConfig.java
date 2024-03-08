@@ -3,7 +3,7 @@ package store.ckin.batch.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import store.ckin.batch.listener.BirthCouponListener;
+import store.ckin.batch.listener.BatchListener;
 
 /**
  * BatchConfig
@@ -16,7 +16,7 @@ import store.ckin.batch.listener.BirthCouponListener;
 public class BatchConfig {
 
     @Bean
-    public BirthCouponListener birthCouponListener() {
-        return new BirthCouponListener();
+    public BatchListener birthCouponListener() {
+        return new BatchListener();
     }
 }

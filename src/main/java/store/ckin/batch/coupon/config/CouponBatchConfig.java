@@ -21,6 +21,12 @@ public class CouponBatchConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final BirthCouponStep birthCouponStep;
 
+    /**
+     * 생일 쿠폰을 지급하는 JOB 입니다.
+     *
+     * @return
+     * @throws Exception
+     */
     @Bean
     public Job giveBirthCoupon() throws Exception {
         return jobBuilderFactory.get("giveBirthCoupon")

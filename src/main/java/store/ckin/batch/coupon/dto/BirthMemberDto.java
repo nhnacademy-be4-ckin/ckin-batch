@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.sql.Date;
 
 /**
- * BirthMemberDto
+ * 생일 쿠폰을 받을 회원에 대한 정보를 담은 DTO 입니다.
  *
  * @author : 이가은
  * @version : 2024. 02. 25
@@ -18,9 +18,6 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BirthMemberDto {
-
-    private Long member_id;
-    private Date member_birth;
-
-
+    private Long memberId;
+    private Date memberBirth;
 }
