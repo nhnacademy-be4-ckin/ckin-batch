@@ -37,7 +37,7 @@ public class DataSourceConfig {
      */
     @Bean(name = "dataSource")
     public DataSource dataSource() {
-        return getDataSource(keyManager.keyStore(dbProperties.getUrl_dev()));
+        return getDataSource(keyManager.keyStore(dbProperties.getUrlDev()));
     }
 
     /**
@@ -48,7 +48,7 @@ public class DataSourceConfig {
     @Primary
     @Bean(name = "defaultDataSource")
     public DataSource defaultDataSource() {
-        return getDataSource(keyManager.keyStore(dbProperties.getUrl_batch()));
+        return getDataSource(keyManager.keyStore(dbProperties.getUrlBatch()));
     }
 
     /**
