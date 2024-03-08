@@ -46,7 +46,7 @@ public class BatchListener {
         if (e instanceof ParseException) {
             log.error("ParseException 발생!!");
         } else {
-            e.printStackTrace();
+            log.error(e.toString());
         }
     }
 }
