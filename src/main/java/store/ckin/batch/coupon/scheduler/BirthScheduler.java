@@ -29,7 +29,7 @@ public class BirthScheduler {
     /**
      * 매월 1일 생일자에게 생일 쿠폰을 지급하는 스케쥴러입니다.
      */
-    @Scheduled(cron = "15 * * * * *")
+    @Scheduled(cron = "0 0 0 1 * *")
     public void birthJob() {
         Map<String, JobParameter> confMap = new HashMap<>();
 
