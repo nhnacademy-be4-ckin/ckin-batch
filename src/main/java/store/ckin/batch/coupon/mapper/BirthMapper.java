@@ -18,4 +18,6 @@ public interface BirthMapper {
 
     int bulkInsertUserList(List<? extends BirthCouponDto> birthCouponDtoList);
 
+    int insertUserList(BirthCouponDto birthCouponDto);
+
 }

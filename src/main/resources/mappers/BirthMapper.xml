@@ -16,4 +16,9 @@
         </foreach>
     </insert>
 
+    <insert id="insertUserList" parameterType="store.ckin.batch.coupon.dto.BirthCouponDto">
+        INSERT INTO Coupon(member_id, coupontemplate_id, coupon_expiration_date, coupon_issue_date, coupon_used_date)
+        VALUES (#{memberId}, #{couponTemplateId}, #{expirationDate}, #{issueDate}, #{usedDate})
+    </insert>
+
 </mapper>
