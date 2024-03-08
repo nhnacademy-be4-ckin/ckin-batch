@@ -8,7 +8,7 @@ import org.springframework.batch.core.annotation.OnReadError;
 import org.springframework.batch.item.ParseException;
 
 /**
- * 로그를 기록하는 리스너 입니다.
+ * 예외처리를 위한 로그를 기록하는 리스너 입니다.
  *
  * @author : 이가은
  * @version : 2024. 02. 29
@@ -16,22 +16,37 @@ import org.springframework.batch.item.ParseException;
 @Slf4j
 public class BatchListener {
 
+    /**
+     * Step 시작 전에 실행할 step의 이름을 남깁니다.
+     *
+     * @param execution
+     */
     @BeforeStep
     public void beforeStep(StepExecution execution) {
         log.info("start : {}", execution.getStepName());
     }
 
+    /**
+     * Step 시작 후에 실행된 step의 이름을 남깁니다.
+     *
+     * @param execution
+     */
     @AfterStep
     public void afterStep(StepExecution execution) {
         log.info("end : {}", execution.getStepName());
     }
 
+    /**
+     * Step 실행중에 발생한 에러를 남깁니다.
+     *
+     * @param e
+     */
     @OnReadError
     public void onReadError(Exception e) {
         if (e instanceof ParseException) {
             log.error("ParseException 발생!!");
         } else {
-            log.error("An error has occured");
+            e.printStackTrace();
         }
     }
 }

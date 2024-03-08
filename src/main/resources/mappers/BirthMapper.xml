@@ -2,13 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store.ckin.batch.coupon.mapper.BirthMapper">
     <select id="getBirthMember" resultType="store.ckin.batch.coupon.dto.BirthMemberDto">
-        SELECT member_id, member_birth
+        SELECT member_id as memberId, member_birth as memberBirth
         FROM Member
-        WHERE MONTH (member_birth) = DATE_FORMAT(NOW(), '%m');
+        WHERE MONTH (member_birth) = DATE_FORMAT(NOW(), '%m')
+        LIMIT #{_skiprows}, #{_pagesize};
     </select>
 
-    <insert id="insertBirthCoupon" parameterType="store.ckin.batch.coupon.dto.BirthCouponDto">
+    <insert id="bulkInsertUserList" parameterType="java.util.List">
         INSERT INTO Coupon(member_id, coupontemplate_id, coupon_expiration_date, coupon_issue_date, coupon_used_date)
-        VALUES (#{memberId}, #{couponTemplateId}, #{expirationDate}, #{issueDate}, #{usedDate});
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.memberId}, #{item.couponTemplateId}, #{item.expirationDate}, #{item.issueDate}, #{item.usedDate})
+        </foreach>
     </insert>
+
 </mapper>

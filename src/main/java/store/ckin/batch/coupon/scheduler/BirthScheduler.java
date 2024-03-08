@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * description:
+ * 매월 1일 생일자에게 생일 쿠폰을 지급하는 스케쥴러입니다.
  *
  * @author : gaeun
  * @version : 2024. 02. 26
@@ -26,6 +26,9 @@ public class BirthScheduler {
     @Autowired
     private CouponBatchConfig couponBatchConfig;
 
+    /**
+     * 매월 1일 생일자에게 생일 쿠폰을 지급하는 스케쥴러입니다.
+     */
     @Scheduled(cron = "15 * * * * *")
     public void birthJob() {
         Map<String, JobParameter> confMap = new HashMap<>();
