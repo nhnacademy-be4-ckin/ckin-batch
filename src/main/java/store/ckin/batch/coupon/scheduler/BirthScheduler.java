@@ -40,7 +40,8 @@ public class BirthScheduler {
         try {
             jobLauncher.run(couponBatchConfig.giveBirthCoupon(), jobParameters);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
+
 }
