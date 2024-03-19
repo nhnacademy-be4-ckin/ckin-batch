@@ -7,6 +7,12 @@
         WHERE MONTH (member_birth) = DATE_FORMAT(NOW(), '%m')
         LIMIT #{_skiprows}, #{_pagesize};
     </select>
+    <select id="readBirthPolicy" resultType="java.lang.Long">
+        SELECT coupontemplate_id
+        FROM CouponTemplate
+        WHERE template_type_id = 1
+          AND state = 1;
+    </select>
 
     <insert id="bulkInsertUserList" parameterType="java.util.List">
         INSERT INTO Coupon(member_id, coupontemplate_id, coupon_expiration_date, coupon_issue_date, coupon_used_date)
