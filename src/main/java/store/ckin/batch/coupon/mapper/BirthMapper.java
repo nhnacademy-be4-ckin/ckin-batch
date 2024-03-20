@@ -20,4 +20,5 @@ public interface BirthMapper {
 
     int insertUserList(BirthCouponDto birthCouponDto);
 
+    Long readBirthPolicy();
 }

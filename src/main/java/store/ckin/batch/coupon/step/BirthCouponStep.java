@@ -1,5 +1,7 @@
 package store.ckin.batch.coupon.step;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -18,8 +20,6 @@ import store.ckin.batch.coupon.dto.BirthMemberDto;
 import store.ckin.batch.coupon.mapper.BirthMapper;
 import store.ckin.batch.listener.BatchListener;
 
-import java.time.LocalDate;
-
 /**
  * BirthCouponStep
  *
@@ -36,6 +36,7 @@ public class BirthCouponStep {
     private final BatchListener birthCouponListener;
     private final BirthMapper birthMapper;
     private static final int CHUNK_SIZE = 3;
+    private Long couponTemplateId;
 
     /**
      * ItemReader, ItemWriter 실행하고 예외상황에 대한 로그를 남기는 Step 입니다.
@@ -45,6 +46,8 @@ public class BirthCouponStep {
      */
     @Bean
     public Step giveBirthCouponStep() throws Exception {
+        readBirthPolicy();
+
         return stepBuilderFactory.get("giveBirthCouponStep")
                 .<BirthMemberDto, BirthCouponDto>chunk(CHUNK_SIZE)
                 .reader(myBatisPagingItemReader())
@@ -57,6 +60,10 @@ public class BirthCouponStep {
                 .transactionManager(transactionManager)
                 .allowStartIfComplete(true)
                 .build();
+    }
+
+    public void readBirthPolicy() {
+        couponTemplateId = birthMapper.readBirthPolicy();
     }
 
     /**
@@ -84,14 +91,14 @@ public class BirthCouponStep {
     public ItemProcessor<BirthMemberDto, BirthCouponDto> processor() {
         return birthMemberDto
                 -> new BirthCouponDto(birthMemberDto.getMemberId(),
-                1L,
+                couponTemplateId,
                 birthMemberDto.getMemberBirth(),
-                java.sql.Date.valueOf(LocalDate.now().toString()),
+                Date.valueOf(LocalDate.now().toString()),
                 null);
     }
 
     /**
-     * 쿠폰을 bulk insert하는 ItemWriter 입니다.
+     * 쿠폰을 bulk insert 하는 ItemWriter 입니다.
      *
      * @return ItemWriter
      */
