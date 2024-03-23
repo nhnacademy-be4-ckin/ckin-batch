@@ -32,7 +32,7 @@
     <!--    logging level 지정 TRACE, DEBUG, INFO, WARN, ERROR, FATAL/OFF-->
 
     <springProfile name="prod">
-        <root level="DEBUG">
+        <root level="INFO">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="LOG"/>
         </root>
